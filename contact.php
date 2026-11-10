@@ -60,6 +60,20 @@ $headers  = "From: Impulse AI Web <$FROM_EMAIL>\r\n";
 $headers .= "Reply-To: $email\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-$sent = @mail($TO_EMAIL, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers, "-f$FROM_EMAIL");
+$encodedSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+
+// Intento 1: remitente de tu dominio.
+$sent = @mail($TO_EMAIL, $encodedSubject, $body, $headers);
+
+// Intento 2: si el servidor rechaza ese remitente, usa el remitente por defecto del hosting.
+if (!$sent) {
+    $fallback  = "Reply-To: $email\r\n";
+    $fallback .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $sent = @mail($TO_EMAIL, $encodedSubject, $body, $fallback);
+}
+
+if (!$sent) {
+    error_log('contact.php: mail() devolvió false');
+}
 
 respond((bool) $sent, $sent ? 200 : 500);
