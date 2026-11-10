@@ -5,11 +5,11 @@
 /* ---------- CONFIGURACIÓN: edita estos 3 valores ---------- */
 const CONFIG = {
   // Enlace de tu calendario (Google Calendar "Agenda de citas", Calendly, etc.)
-  calendarUrl: "https://calendar.google.com/",
+  calendarUrl: "https://calendar.app.google/8ZvSHmodoUWZtne9A",
   // Correo que recibe los contactos
   email: "carlos@impulseaiagency.com",
-  // Tu perfil o página de empresa en LinkedIn
-  linkedinUrl: "https://www.linkedin.com/"
+  // Tu perfil o página de empresa en LinkedIn (vacío = el enlace no se muestra)
+  linkedinUrl: ""
 };
 
 /* ---------- Traducciones al inglés ----------
@@ -202,7 +202,8 @@ applyLang(detectLang());
 
 /* ---------- Config: enlaces ---------- */
 document.getElementById("calendar-link").href = CONFIG.calendarUrl;
-document.getElementById("linkedin-link").href = CONFIG.linkedinUrl;
+const liLink = document.getElementById("linkedin-link");
+if (CONFIG.linkedinUrl) { liLink.href = CONFIG.linkedinUrl; } else { liLink.remove(); }
 document.querySelectorAll('a[href^="mailto:"]').forEach((a) => {
   a.href = "mailto:" + CONFIG.email;
   if (a.textContent.includes("@")) a.textContent = CONFIG.email;
