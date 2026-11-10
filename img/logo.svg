@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 48" role="img" aria-label="Impulse AI Agency">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7C5CFF"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="4" width="40" height="40" rx="11" fill="url(#g)"/>
+  <path d="M14 34 L22 14 L30 34 M17.5 27 H26.5" fill="none" stroke="#0B1020" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="34.5" cy="15.5" r="2.6" fill="#0B1020"/>
+  <text x="54" y="31" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="#FFFFFF" letter-spacing="-0.3">Impulse<tspan fill="url(#g)">AI</tspan></text>
+  <text x="168" y="31" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#9AA3C7" letter-spacing="2.5">AGENCY</text>
+</svg>
