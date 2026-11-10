@@ -1,8 +1,0 @@
----
-# Despliegue automático en BanaHosting (cPanel > Git Version Control)
-# IMPORTANTE: cambia TU_USUARIO_CPANEL por tu usuario real de cPanel.
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/TU_USUARIO_CPANEL/public_html/
-    - /bin/cp index.html privacidad.html contact.php $DEPLOYPATH
-    - /bin/cp -R css js img $DEPLOYPATH

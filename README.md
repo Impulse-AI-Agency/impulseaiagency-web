@@ -11,15 +11,14 @@ contact.php       Envía el formulario a tu correo
 css/styles.css    Estilos
 js/main.js        Idioma, menú, animaciones, formulario y traducciones al inglés
 img/              Logo y favicon
-.cpanel.yml       Instrucciones de despliegue para cPanel
+.github/          Despliegue automático por FTP
 ```
 
 ## Antes de publicar: edita esto
 
 1. **js/main.js → `CONFIG`**: tu enlace de calendario, tu correo y tu LinkedIn.
 2. **contact.php**: `$TO_EMAIL` (quién recibe los contactos).
-3. **.cpanel.yml**: cambia `TU_USUARIO_CPANEL` por tu usuario de cPanel.
-4. **Garantía (sección "Compromiso de resultados")**: revisa que estés de acuerdo con ofrecerla, o cámbiala en `index.html` y en `js/main.js` (`guarantee.text`).
+3. **Garantía (sección "Compromiso de resultados")**: revisa que estés de acuerdo con ofrecerla, o cámbiala en `index.html` y en `js/main.js` (`guarantee.text`).
 
 ## Idiomas
 
@@ -28,17 +27,18 @@ img/              Logo y favicon
 - Enlaces directos: `https://impulseaiagency.com/?lang=en` y `?lang=es`.
 - Para editar textos: el español está en `index.html`, el inglés en `js/main.js` (objeto `EN`).
 
-## Despliegue: GitHub → BanaHosting
+## Despliegue: GitHub → BanaHosting (automático por FTP)
 
-1. Sube esta carpeta a un repositorio de GitHub (por ejemplo `impulseaiagency-web`).
-2. En cPanel abre **Git™ Version Control** → **Create**.
-   - Activa **Clone a Repository** y pega la URL del repositorio.
-     - Si es privado, primero agrega una clave SSH de cPanel (*SSH Access*) como *Deploy key* en GitHub y usa la URL SSH (`git@github.com:...`).
-   - Repository Path: por ejemplo `/home/TU_USUARIO_CPANEL/repositories/impulseaiagency-web` (**no** dentro de `public_html`).
-3. Entra a **Manage** → pestaña **Pull or Deploy**:
-   - **Update from Remote** trae los últimos cambios de GitHub.
-   - **Deploy HEAD Commit** copia los archivos a `public_html` según `.cpanel.yml`.
-4. Cada vez que cambies algo en GitHub, repite el paso 3.
+Cada vez que se actualiza la rama `main`, GitHub sube la web a BanaHosting
+(archivo `.github/workflows/deploy.yml`).
+
+Configuración (una sola vez):
+1. En cPanel → **FTP Accounts**, crea una cuenta FTP cuyo directorio sea `public_html`.
+2. En GitHub → repositorio → **Settings → Secrets and variables → Actions → New repository secret**, crea:
+   - `FTP_SERVER`: `ftp.impulseaiagency.com`
+   - `FTP_USERNAME`: el usuario FTP completo (por ejemplo `deploy@impulseaiagency.com`)
+   - `FTP_PASSWORD`: la contraseña de esa cuenta FTP
+3. En la pestaña **Actions**, abre "Publicar en BanaHosting" → **Run workflow**.
 
 ## Para que el formulario no caiga en spam
 
